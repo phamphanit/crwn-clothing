@@ -16,6 +16,7 @@ import "./menu-item.styles.scss";
 //     </div>
 //   </div>
 // );
+
 const MenuItem = (props) => (
   <div
     className={`${props.size} menu-item`}
