@@ -12,7 +12,7 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const Header = ({ currentUser, hidden }) => (
   <div className=" header">
-    <Link to="./" className="logo-container">
+    <Link to="/" className="logo-container">
       <Logo className="logo"></Logo>
     </Link>
     <div className="options">
