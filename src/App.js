@@ -6,17 +6,17 @@ import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/signin-and-signup/signin-and-signup.component'
 import CheckoutPage from './pages/checkout/checkout.component';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-
+import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
 class App extends React.Component {
 
   unsubscribefromAuth = null;
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser, collectionArray } = this.props;
     this.unsubscribefromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -33,6 +33,7 @@ class App extends React.Component {
         });
       }
       setCurrentUser(userAuth);
+      addCollectionAndDocuments('collections', collectionArray.map(({ title, items }) => ({ title, items })));
     })
   }
   componentWillUnmount() {
@@ -57,8 +58,8 @@ class App extends React.Component {
 }
 const mapStateToProps = (state) =>
 ({
-  currentUser: selectCurrentUser(state)
-
+  currentUser: selectCurrentUser(state),
+  collectionArray: selectCollectionForPreview(state)
 })
 const mapDispatchToProps = dispatch => (
   {
