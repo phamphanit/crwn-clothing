@@ -17,19 +17,21 @@ import "./menu-item.styles.scss";
 //   </div>
 // );
 
-const MenuItem = (props) => (
-  <div
-    className={`${props.size} menu-item`}
-    onClick={() => props.history.push(`${props.match.url}${props.linkUrl}`)}
-  >
+const MenuItem = (props) => {
+  return (
     <div
-      className="background-image"
-      style={{ backgroundImage: `url(${props.imageUrl})` }}
-    ></div>
-    <div className="content">
-      <h1 className="title">{props.title}</h1>
-      <span className="subtitle">SHOP NOW</span>
+      className={`${props.size} menu-item`}
+      onClick={() => props.history.push(`${props.match.url}${props.linkUrl}`)}
+    >
+      <div
+        className="background-image"
+        style={{ backgroundImage: `url(${props.imageUrl})` }}
+      ></div>
+      <div className="content">
+        <h1 className="title">{props.title}</h1>
+        <span className="subtitle">SHOP NOW</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 export default withRouter(MenuItem);
