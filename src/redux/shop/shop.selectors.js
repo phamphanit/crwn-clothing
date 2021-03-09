@@ -18,5 +18,5 @@ export const selectIsCollectionFetching = createSelector(
 )
 export const selectIsCollectionLoaded = createSelector(
         [shopSelector],
-        shop => !!shop.collections
+        shop => shop.collections
 )
