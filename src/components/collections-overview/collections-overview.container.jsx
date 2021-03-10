@@ -6,6 +6,7 @@ import { compose } from "redux";
 const mapStateToProps = (state) => ({
   isLoading: selectIsCollectionFetching(state),
 });
+
 const CollectionsOverviewContainer = compose(
   connect(mapStateToProps),
   WithSpinner
