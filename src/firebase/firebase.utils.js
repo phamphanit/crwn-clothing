@@ -53,6 +53,15 @@ export const convertCollectionsSnapshotToMap = (collections) => {
                 return accomulator;
         }, {})
 }
+
+export const getCurrentUser = () => {
+        return new Promise((resolve, reject) => {
+                const unsubscribe = auth.onAuthStateChanged(userAuth => {
+                        unsubscribe();
+                        resolve(userAuth);
+                }, reject);
+        })
+}
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
         const collectionRef = firestore.collection(collectionKey);
         const batch = firestore.batch();

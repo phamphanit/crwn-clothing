@@ -10,8 +10,8 @@ export function* fetchCollections() {
         try {
                 const collectionRef = firestore.collection('collections');
                 const snapshot = yield collectionRef.get();
-                // const collectionMap = yield call(convertCollectionsSnapshotToMap, snapshot);
-                const collectionMap = convertCollectionsSnapshotToMap(snapshot);
+                const collectionMap = yield call(convertCollectionsSnapshotToMap, snapshot);
+                // const collectionMap = convertCollectionsSnapshotToMap(snapshot);
                 yield put(fetchCollectionSuccess(collectionMap));
         }
         catch (error) {
